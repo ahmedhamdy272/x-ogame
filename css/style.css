@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,300;1,600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to bottom , #00cd8c ,#51ba01b7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.container{
+    margin: 60px;
+    width: 460px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background-color: #fff;
+    box-shadow: 1px 2px 20px 20px #00000054;
+}
+.container .game-box{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(110px , 1fr));
+    gap: calc(50px / 3);
+    width: 400px;
+    height: 400px;
+}
+li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .box{
+    background-color: aqua;
+    border-radius: 30px;
+    transition: 0.4s;
+    font-size:80px;
+}
+.container .box:hover{
+    background-color: bisque;
+}
+
+.restart button{
+    padding: 12px 23px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    color: white;
+    background-color: aqua;
+    border: none;
+    transition:  0.4s;
+}
+.restart button:hover{
+    background-color: bisque;
+    color: black;
+}
+
+
+.color-x{
+    color: rgb(0, 132, 255);
+}
+
+.color-o{
+    color: rgb(93, 0, 255);
+}
