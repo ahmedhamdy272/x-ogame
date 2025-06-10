@@ -1,35 +1,184 @@
-
 <!DOCTYPE html>
-<html>
-
-<head>
+<html lang="en">
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>XO Game</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-    <script src="js/app.js"></script>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="js/app.js" defer></script>
+  </head>
 
-<body>
-    <div class="overlay"></div>
-    <div class="semafor">Human <span id="human">0</span> - <span id="computer">0</span> Computer</div>
-    <div class="gamespace">
-    <div class="panel" id="panel">
-
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-        <button onclick="nextMove(this)"></button>
-
+  <body>
+    <!-- Welcome Screen -->
+    <div
+      class="welcome-screen"
+      id="welcomeScreen"
+      role="dialog"
+      aria-label="Game Setup"
+    >
+      <div class="welcome-content">
+        <h1>Welcome to XO Game</h1>
+        <div class="input-group">
+          <label for="playerName">Enter Your Name</label>
+          <input
+            type="text"
+            id="playerName"
+            placeholder="Enter your name"
+            maxlength="15"
+            aria-label="Player name"
+            autocomplete="off"
+          />
+        </div>
+        <div class="difficulty-group">
+          <h3>Select Difficulty</h3>
+          <div
+            class="difficulty-buttons"
+            role="radiogroup"
+            aria-label="Game difficulty"
+          >
+            <button
+              class="difficulty-btn"
+              data-difficulty="easy"
+              role="radio"
+              aria-checked="false"
+            >
+              <i class="fas fa-star"></i> Easy
+            </button>
+            <button
+              class="difficulty-btn"
+              data-difficulty="medium"
+              role="radio"
+              aria-checked="false"
+            >
+              <i class="fas fa-star"></i><i class="fas fa-star"></i> Medium
+            </button>
+            <button
+              class="difficulty-btn"
+              data-difficulty="hard"
+              role="radio"
+              aria-checked="false"
+            >
+              <i class="fas fa-star"></i><i class="fas fa-star"></i
+              ><i class="fas fa-star"></i> Hard
+            </button>
+          </div>
+        </div>
+        <button id="startGame" class="start-btn" disabled>
+          <i class="fas fa-play"></i> Start Game
+        </button>
+      </div>
     </div>
-</div>
-</body>
+
+    <!-- Game Screen -->
+    <div class="game-screen" id="gameScreen" style="display: none">
+      <!-- Game Header -->
+      <div class="game-header">
+        <div class="player-info">
+          <span id="playerNameDisplay"></span>
+          <span class="score" id="human">0</span>
+        </div>
+        <div class="vs">VS</div>
+        <div class="player-info">
+          <span>Computer</span>
+          <span class="score" id="computer">0</span>
+        </div>
+        <div class="difficulty-display">
+          <i class="fas fa-cog"></i>
+          <span id="currentDifficulty"></span>
+        </div>
+      </div>
+
+      <!-- Game Board -->
+      <div class="gamespace">
+        <div class="panel" id="panel" role="grid" aria-label="Game board">
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 1"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 2"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 3"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 4"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 5"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 6"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 7"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 8"
+          ></button>
+          <button
+            onclick="nextMove(this)"
+            role="gridcell"
+            aria-label="Cell 9"
+          ></button>
+        </div>
+
+        <!-- Game Controls -->
+        <div class="game-controls">
+          <button class="control-btn restart" aria-label="Restart game">
+            <i class="fas fa-redo"></i> Restart
+          </button>
+          <button
+            class="control-btn exit"
+            onclick="clearPreferences()"
+            aria-label="Exit to menu"
+          >
+            <i class="fas fa-sign-out-alt"></i> Exit
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Overlay -->
+      <div class="result-overlay" id="resultOverlay" style="display: none">
+        <div class="result-content">
+          <h2 id="resultMessage"></h2>
+          <div class="result-animation"></div>
+        </div>
+      </div>
+
+      <!-- Audio Elements -->
+      <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>
+      <audio id="winSound" src="sounds/win.mp3" preload="auto"></audio>
+      <audio id="drawSound" src="sounds/draw.mp3" preload="auto"></audio>
+
+      <footer class="footer">
+        <h4>&copy; 2023 Ahmed Hamdi</h4>
+      </footer>
+    </div>
+  </body>
 </html>
