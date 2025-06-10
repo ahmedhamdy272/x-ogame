@@ -1,36 +1,35 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/app.js" defer></script>
-    <title>XO</title>
-  </head>
-  <body>
-    <header>
-      <h1 class="main-title">
-        <span class="color-x">X</span> - <span class="color-o">O</span> Game
-      </h1>
-    </header>
-    <div class="container">
-      <ul class="game-box">
-        <li id="box1" class="box" onclick="game(this.id)"></li>
-        <li id="box2" class="box" onclick="game(this.id)"></li>
-        <li id="box3" class="box" onclick="game(this.id)"></li>
-        <li id="box4" class="box" onclick="game(this.id)"></li>
-        <li id="box5" class="box" onclick="game(this.id)"></li>
-        <li id="box6" class="box" onclick="game(this.id)"></li>
-        <li id="box7" class="box" onclick="game(this.id)"></li>
-        <li id="box8" class="box" onclick="game(this.id)"></li>
-        <li id="box9" class="box" onclick="game(this.id)"></li>
-      </ul>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>XO Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="semafor">Human <span id="human">0</span> - <span id="computer">0</span> Computer</div>
+    <div class="gamespace">
+    <div class="panel" id="panel">
+
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+        <button onclick="nextMove(this)"></button>
+
     </div>
-    <div class="restart">
-      <button>Restart</button>
-    </div>
-    <footer>
-      <h4>&copy; 2023 Ahmed Hamdi</h4>
-    </footer>
-  </body>
+</div>
+</body>
 </html>
